@@ -1,0 +1,81 @@
+=====================
+Konfigurasi NextCloud
+=====================
+Pastikan Ubuntu terkoneksi internet
+update software ubuntu
+----------------------
+# apt-update
+install paket dukungan seperti web-server, php php-mysql
+----------------------------------------------------------
+# apt-get install apache2 libapache2-mod-php bzip2
+# apt-get install php php-gd php-json php-mysql php-curl php-mbstring
+# apt-get install php-intl php-mcrypt php-imagick php-xml php-zip
+install paket software database maria-DB atau mysql
+------------------------------------------------
+Maria-DB
+********
+# apt-get install mariadb-server php-mysql
+ATAU
+MySQL
+*****
+# apt-get install mysql-server php-mysql
+*pilih salah satunya saja yang di install*
+Untuk masuk ke database dan Anda akan diminta memasukkan password root ;
+------------------------------------------------------------------------
+$ mysql -u root -p
+masukan password jika ada password jika tidak tekan ENTER saja
+Membuat database nextcloud
+-----------------------
+create database nextcloud;
+Membuat user & password yang akan terhubung ke database:
+---------------------------------------------
+mysql> create user nextcloud@localhost identified by 'sederhana';
+Query OK, 0 rows affected (0.00 sec)Memberikan privileges untuk user baru:
+--------------------------------------
+mysql> grant all privileges on nextcloud.* to nextcloud@localhost;
+Query OK, 0 rows affected (0.00 sec)
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec);
+quit / Ctrl-D (untuk keluar dari mysql)
+======================================================================
+-------------
+=======================================================================
+----------------------------------------------
+Download & ISTALL NEXTCLOUD=
+----------------------------------------------
+Pindah ke direktori
+-----------------------
+# cd /var/www/html
+# wget https://download.nextcloud.com/server/releases/nextcloud-18.0.1.tar.bz2
+atau
+download nexcloud dari websitenya yang berformat .tar.bz2 atau .zip
+---------------------
+extract nextcloud
+---------------------
+# tar - xjvf nextcloud-Versi??-latest.tar.bz2
+atau
+extract sekaligus memindahkan direktori nextcloud ke var/www/html
+# tar -xjvf nextcloud-18.0.0beta3.tar.bz2 -C /var/www/html/
+Ubah kepemilikan direktori nextcloud
+-------------------------------------
+# chown -R www-data:www-data nextcloud
+# rm nextcloud-18.0.1.tar.bz2
+Lalu buka browser firefox atau Chrome ketikan
+IP_server_nexcloud/nextcloudcontoh:
+192.168.43.11/nextcloud
+buat user login
+contoh:
+username : admin
+password : rahasia
+contoh:
+nama_database
+password_database
+user_database
+localhost
+: nextcloud
+: sederhana
+: nextcloud
+Ikuti nama_database, password_database & user_database sesuai konfigurasi database di mysql
+diatas
+lalu ikuti petunjuk instalasi nextcloud selanjutnya
+SELAMAT MENCOBA
